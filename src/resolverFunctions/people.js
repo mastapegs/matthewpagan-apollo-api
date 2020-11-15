@@ -15,6 +15,7 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
   let edges = peopleData.map(peopleEdgesMapCallback)
   let PersonConnection
   let hasNextPage
+  let hasPreviousPage
 
   if (!first && !last) {
 
@@ -42,11 +43,12 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
     } else {
       after = Number(Buffer.from(after, 'base64').toString('utf8'))
       edges = edges.slice(after + 1, first + after + 1)
+      hasPreviousPage = true
       hasNextPage = (after + first < peopleData.length - 1) ? true : false
       PersonConnection = {
         edges,
         pageInfo: {
-          hasPreviousPage: false,
+          hasPreviousPage,
           hasNextPage,
         },
       }
