@@ -1,26 +1,23 @@
-const people = () => {
-  return ([
-    {
-      name: 'Matthew Pagan',
-      isAdult: true,
+const people = require('../data/people')
+
+const edges = people.map(({ name, isAdult }, cursor) => {
+  return ({
+    cursor,
+    node: {
+      name,
+      isAdult,
+    }
+  })
+})
+
+const peopleConnection = () => {
+  return ({
+    edges,
+    pageInfo: {
+      hasPreviousPage: false,
+      hasNextPage: false,
     },
-    {
-      name: 'Amanda Blanchette',
-      isAdult: true,
-    },
-    {
-      name: 'Noah Pagan',
-      isAdult: false,
-    },
-    {
-      name: 'Kenzie Pagan',
-      isAdult: false,
-    },
-    {
-      name: 'Sari Chitt',
-      isAdult: true,
-    },
-  ])
+  })
 }
 
-module.exports = people
+module.exports = peopleConnection
