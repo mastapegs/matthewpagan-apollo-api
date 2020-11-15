@@ -4,14 +4,14 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
 
   const peopleEdgesMapCallback = ({ name, isAdult }, cursor) => {
     return ({
-      cursor,
+      cursor: Buffer.from(String(cursor), 'utf8').toString('base64'),
       node: {
         name,
         isAdult,
       }
     })
   }
-  
+
   let edges = peopleData.map(peopleEdgesMapCallback)
   let PersonConnection
   let hasNextPage
@@ -40,7 +40,7 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
         },
       }
     } else {
-      after = Number(after)
+      after = Number(Buffer.from(after, 'base64').toString('utf8'))
       edges = edges.slice(after + 1, first + after + 1)
       hasNextPage = (after + first < peopleData.length - 1) ? true : false
       PersonConnection = {
@@ -51,6 +51,9 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
         },
       }
     }
+
+  } else {
+    // last is not null
 
   }
 
