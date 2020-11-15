@@ -5,8 +5,13 @@ const typeDefs = gql`
     name: String
     isAdult: Boolean
   }
+  type Summary {
+    name: String
+    role: String
+  }
   type Query {
     people: [Person]
+    me: Summary
   }
 `
 
