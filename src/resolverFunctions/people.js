@@ -55,7 +55,20 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
     }
 
   } else {
-    // last is not null
+
+    if (!before) {
+      edges = edges.slice(edges.length - last, edges.length)
+      hasPreviousPage = last < peopleData.length
+      PersonConnection = {
+        edges,
+        pageInfo: {
+          hasPreviousPage,
+          hasNextPage: false,
+        },
+      }
+    } else {
+      // last && before are present
+    }
 
   }
 
