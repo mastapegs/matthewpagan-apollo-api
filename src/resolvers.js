@@ -1,12 +1,10 @@
-const people = require('./data/people')
+const people = require('./resolverFunctions/people')
+const me = require('./resolverFunctions/me')
 
 const resolvers = {
   Query: {
-    people: () => people,
-    me: () => ({
-      name: 'Matthew Pagan',
-      role: 'Full-Stack GraphQL Developer',
-    }),
+    people,
+    me,
   }
 }
 

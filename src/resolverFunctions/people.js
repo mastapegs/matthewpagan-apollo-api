@@ -1,4 +1,4 @@
-const people = [
+const people = () => ([
   {
     name: 'Matthew Pagan',
     isAdult: true,
@@ -19,6 +19,6 @@ const people = [
     name: 'Sari Chitt',
     isAdult: true,
   },
-]
+])
 
 module.exports = people
