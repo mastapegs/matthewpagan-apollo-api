@@ -7,8 +7,16 @@ const paginateArray = ({ DataArray }) => {
     })
   }
   let edges = DataArray.map(DataArrayMapCallback)
-  
-  return edges
+
+  let pageInfo = {
+    hasPreviousPage: false,
+    hasNextPage: false,
+  }
+
+  return {
+    edges,
+    pageInfo,
+  }
 }
 
 module.exports = paginateArray
