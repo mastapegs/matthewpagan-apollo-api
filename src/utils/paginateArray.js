@@ -19,10 +19,10 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
   if (getLast()) action = GET_LAST
   if (getLastBefore()) action = GET_LAST_BEFORE
 
-  const DataArrayMapCallback = (DataArray, cursor) => {
+  const DataArrayMapCallback = (DataArrayItem, cursor) => {
     return ({
       cursor: Buffer.from(String(cursor), 'utf8').toString('base64'),
-      node: { ...DataArray },
+      node: { ...DataArrayItem },
     })
   }
   let edges = DataArray.map(DataArrayMapCallback)
