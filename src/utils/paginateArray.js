@@ -63,9 +63,8 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
       }
     case GET_LAST_BEFORE:
       before = Number(Buffer.from(before, 'base64').toString('utf8'))
-      console.log(before)
       return {
-        edges,
+        edges: edges.slice(before - Math.min(before, last), before),
         pageInfo: {
           hasPreviousPage: false,
           hasNextPage: false,
@@ -75,8 +74,8 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
       return {
         edges: [],
         pageInfo: {
-          hasPreviousPage: false,
-          hasNextPage: false,
+          hasPreviousPage: (before > last),
+          hasNextPage: true,
         },
       }
   }
