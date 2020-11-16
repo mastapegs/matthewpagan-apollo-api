@@ -66,16 +66,16 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
       return {
         edges: edges.slice(before - Math.min(before, last), before),
         pageInfo: {
-          hasPreviousPage: false,
-          hasNextPage: false,
+          hasPreviousPage: (before > last),
+          hasNextPage: true,
         },
       }
     default:
       return {
         edges: [],
         pageInfo: {
-          hasPreviousPage: (before > last),
-          hasNextPage: true,
+          hasPreviousPage: false,
+          hasNextPage: false,
         },
       }
   }
