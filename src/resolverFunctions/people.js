@@ -5,9 +5,19 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
 
   const paginatedPeople = paginateArray({
     DataArray: peopleData,
+    first,
+    last,
+    after,
+    before,
   })
 
   console.log(paginatedPeople)
+
+  return paginatedPeople
+
+  // 
+  // Short-Circuiting rest of code for testing implementation of util function
+  // 
 
   const peopleEdgesMapCallback = ({ name, isAdult }, cursor) => {
     return ({
@@ -20,9 +30,9 @@ const peopleConnection = (parent, { first, last, after, before }, context, info)
   }
 
   let edges = peopleData.map(peopleEdgesMapCallback)
-  let PersonConnection
-  let hasNextPage
-  let hasPreviousPage
+  // let PersonConnection
+  // let hasNextPage
+  // let hasPreviousPage
 
   if (!first && !last) {
 
