@@ -1,6 +1,13 @@
 const peopleData = require('../data/people')
+const paginateArray = require('../utils/paginateArray')
 
 const peopleConnection = (parent, { first, last, after, before }, context, info) => {
+
+  const paginatedPeople = paginateArray({
+    DataArray: peopleData,
+  })
+
+  console.log(paginatedPeople)
 
   const peopleEdgesMapCallback = ({ name, isAdult }, cursor) => {
     return ({
