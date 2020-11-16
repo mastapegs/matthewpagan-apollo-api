@@ -4,17 +4,20 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
   const GET_FIRST = 'Get First Items'
   const GET_FIRST_AFTER = 'Get First Items After Cursor'
   const GET_LAST = 'Get Last Items'
+  const GET_LAST_BEFORE = 'Get Last Items Before Cursor'
 
   const getAllData = () => !first && !last
-  const getFirst = () => !!first && !after
-  const getFirstAfter = () => !!first && !!after
+  const getFirst = () => !last && !!first && !after
+  const getFirstAfter = () => !last && !!first && !!after
   const getLast = () => !first && !!last && !before
+  const getLastBefore = () => !first && !!last && !!before
 
   let action = null
   if (getAllData()) action = ALL_DATA
   if (getFirst()) action = GET_FIRST
   if (getFirstAfter()) action = GET_FIRST_AFTER
   if (getLast()) action = GET_LAST
+  if (getLastBefore()) action = GET_LAST_BEFORE
 
   const DataArrayMapCallback = (DataArray, cursor) => {
     return ({
@@ -42,7 +45,6 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
         }
       }
     case GET_FIRST_AFTER:
-      console.log('get_first_after')
       after = Number(Buffer.from(after, 'base64').toString('utf8'))
       return {
         edges: edges.slice(after + 1, first + after + 1),
@@ -56,6 +58,16 @@ const paginateArray = ({ DataArray, first, last, after, before }) => {
         edges: edges.slice(DataArray.length - Math.min(last, DataArray.length), DataArray.length),
         pageInfo: {
           hasPreviousPage: (last < DataArray.length),
+          hasNextPage: false,
+        },
+      }
+    case GET_LAST_BEFORE:
+      before = Number(Buffer.from(before, 'base64').toString('utf8'))
+      console.log(before)
+      return {
+        edges,
+        pageInfo: {
+          hasPreviousPage: false,
           hasNextPage: false,
         },
       }
