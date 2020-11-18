@@ -1,7 +1,7 @@
 const peopleData = require('../data/people')
 const paginateArray = require('../utils/paginateArray')
 
-const peopleConnection = (parent, { first, last, after, before }, context, info) => {
+const peopleConnection = (_, { first, last, after, before }) => {
 
   return paginateArray({
     DataArray: peopleData,

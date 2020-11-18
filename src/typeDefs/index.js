@@ -7,9 +7,9 @@ const typeDefs = gql`
     me: Summary
   }
 
-  type Summary {
-    name: String
-    role: String
+  interface Connection {
+    edges: [Edge]
+    pageInfo: PageInfo
   }
 
   type PageInfo {
@@ -17,17 +17,32 @@ const typeDefs = gql`
     hasNextPage: Boolean
   }
 
-  type PersonConnection  {
+  interface Edge {
+    node: Node
+    cursor: String
+  }
+
+  interface Node {
+    id: ID!
+  }
+
+  type Summary {
+    name: String
+    role: String
+  }
+
+  type PersonConnection implements Connection {
     edges: [PersonEdge]
     pageInfo: PageInfo
   }
 
-  type PersonEdge {
+  type PersonEdge implements Edge {
     node: Person
     cursor: String
   }
 
-  type Person {
+  type Person implements Node {
+    id: ID!
     name: String
     isAdult: Boolean
   }

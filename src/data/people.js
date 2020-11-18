@@ -21,4 +21,9 @@ const people = [
   },
 ]
 
-module.exports = people
+const peopleWithIDs = people.map(person => ({
+  ...person,
+  id: person.name,
+}))
+
+module.exports = peopleWithIDs
