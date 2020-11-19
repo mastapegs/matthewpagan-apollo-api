@@ -1,9 +1,11 @@
-const relaySchema = require('./relaySchema')
-const peopleSchema = require('./peopleSchema')
-const summarySchema = require('./summarySchema')
-const querySchema = require('./querySchema')
-const testSchema = require('./testSchema')
+const fs = require('fs')
+const path = require('path')
 
-const typeDefs = [querySchema, relaySchema, peopleSchema, summarySchema, testSchema]
+const typeDefs = fs.readdirSync(__dirname)
+  .filter(file => file !== 'index.js')
+  .map(file => {
+    console.log(file)
+    return require(path.join(__dirname, file))
+  })
 
 module.exports = typeDefs
