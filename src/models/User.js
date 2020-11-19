@@ -14,8 +14,8 @@ const User = ({ sequelize, DataTypes, Model }) => {
 
       console.log(newUser)
       return ({
-        ...newUser,
-        id: newUser.email || 'SequelizeUniqueConstraintError',
+        ...newUser.dataValues,
+        id: newUser.id || 'SequelizeUniqueConstraintError',
       })
     }
   }
