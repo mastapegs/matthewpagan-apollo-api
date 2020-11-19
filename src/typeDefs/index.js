@@ -4,7 +4,6 @@ const path = require('path')
 const typeDefs = fs.readdirSync(__dirname)
   .filter(file => file !== 'index.js')
   .map(file => {
-    console.log(file)
     return require(path.join(__dirname, file))
   })
 
