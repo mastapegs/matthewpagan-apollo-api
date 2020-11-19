@@ -1,5 +1,5 @@
-const createUser = (_, { email, firstName, lastName }, { sequelize }) => {
-  return sequelize.models.User.createUser({ email, firstName, lastName })
+const createUser = (_, { user }, { sequelize }) => {
+  return sequelize.models.User.createUser(user)
 }
 
 module.exports = createUser

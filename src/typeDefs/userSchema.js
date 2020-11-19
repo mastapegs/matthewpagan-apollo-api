@@ -7,7 +7,7 @@ const typeDefs = gql`
   }
 
   extend type Mutation {
-    createUser(email: String, firstName: String, lastName: String): User
+    createUser(user: UserInput): User
   }
 
   type UserConnection implements Connection {
@@ -22,6 +22,12 @@ const typeDefs = gql`
 
   type User implements Node {
     id: ID!
+    email: String
+    firstName: String
+    lastName: String
+  }
+
+  input UserInput {
     email: String
     firstName: String
     lastName: String
