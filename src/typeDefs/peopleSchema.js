@@ -2,6 +2,10 @@ const { gql } = require('apollo-server')
 
 const typeDefs = gql`
 
+  extend type Query {
+    people(first: Int, last: Int, after: String, before: String): PersonConnection
+  }
+
   type PersonConnection implements Connection {
     edges: [PersonEdge]
     pageInfo: PageInfo
