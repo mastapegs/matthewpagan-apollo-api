@@ -6,6 +6,10 @@ const typeDefs = gql`
     users(first: Int, last: Int, after: String, before: String): UserConnection
   }
 
+  extend type Mutation {
+    createUser(email: String, firstName: String, lastName: String): User
+  }
+
   type UserConnection implements Connection {
     edges: [UserEdge]
     pageInfo: PageInfo
