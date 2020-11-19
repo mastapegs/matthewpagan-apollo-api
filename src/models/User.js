@@ -21,10 +21,8 @@ const User = ({ sequelize, DataTypes, Model }) => {
     }
 
     static async getAll({ first, last, after, before }) {
-      const users = await this.findAll()
-      const mappedUsers = users.map(user => user.dataValues)
       return paginateArray({
-        DataArray: mappedUsers,
+        DataArray: (await this.findAll()).map(user => user.dataValues),
         first,
         last,
         after,
