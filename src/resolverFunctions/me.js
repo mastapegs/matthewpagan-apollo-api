@@ -1,5 +1,4 @@
-const me = (_, __, { value }) => {
-  console.log(`Context Test: ${value}`)
+const me = () => {
   return ({
     name: 'Matthew Pagan',
     role: 'Full-Stack GraphQL Developer',
