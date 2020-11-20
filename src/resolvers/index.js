@@ -1,17 +1,12 @@
-const people = require('./people')
-const me = require('./me')
-const createUser = require('./createUser')
-const users = require('./users')
+const fs = require('fs')
+const path = require('path')
 
-const resolvers = {
-  Query: {
-    people,
-    me,
-    users,
-  },
-  Mutation: {
-    createUser,
-  }
-}
+const merge = require('deepmerge')
+
+const resolvers = merge.all(
+  fs.readdirSync(__dirname)
+    .filter(file => file !== 'index.js')
+    .map(filename => require(path.join(__dirname, filename)))
+)
 
 module.exports = resolvers

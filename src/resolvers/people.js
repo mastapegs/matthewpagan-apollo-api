@@ -1,8 +1,7 @@
 const peopleData = require('../data/people')
 const paginateArray = require('../utils/paginateArray')
 
-const peopleConnection = (_, { first, last, after, before }) => {
-
+const people = (_, { first, last, after, before }) => {
   return paginateArray({
     DataArray: peopleData,
     first,
@@ -10,7 +9,12 @@ const peopleConnection = (_, { first, last, after, before }) => {
     after,
     before,
   })
-
 }
 
-module.exports = peopleConnection
+const resolvers = {
+  Query: {
+    people,
+  }
+}
+
+module.exports = resolvers

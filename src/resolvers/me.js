@@ -5,4 +5,10 @@ const me = () => {
   })
 }
 
-module.exports = me
+const resolvers = {
+  Query: {
+    me,
+  }
+}
+
+module.exports = resolvers
