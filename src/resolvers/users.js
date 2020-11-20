@@ -1,5 +1,5 @@
-const users = async (_, { first, last, after, before }, { sequelize }) => {
-  return await sequelize.models.User.getAll({ first, last, after, before })
+const users = async (_, paginateVariables, { sequelize }) => {
+  return await sequelize.models.User.getAll(paginateVariables)
 }
 
 const createUser = (_, { user }, { sequelize }) => {
