@@ -1,0 +1,36 @@
+const { gql } = require('apollo-server')
+
+const typeDefs = gql`
+
+  extend type Query {
+    shapes(first: Int, last: Int, after: String, before: String): ShapesConnection
+  }
+
+  extend type Mutation {
+    createShape(shape: ShapeInput): Shape
+  }
+
+  type ShapesConnection implements Connection {
+    edges: [ShapeEdge]
+    pageInfo: PageInfo
+  }
+
+  type ShapeEdge implements Edge {
+    node: Shape
+    cursor: String
+  }
+
+  type Shape implements Node {
+    id: ID!
+    name: String
+    sides: Int
+  }
+
+  input ShapeInput {
+    name: String
+    sides: Int
+  }
+
+`
+
+module.exports = typeDefs

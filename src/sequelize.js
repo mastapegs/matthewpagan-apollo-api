@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 const UserModel = require('./models/User')
+const ShapesModel = require('./models/Shapes')
 
 const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
   host: process.env.DATABASE_HOST,
@@ -8,6 +9,7 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_
 })
 
 UserModel({ sequelize, DataTypes, Model })
+ShapesModel({ sequelize, DataTypes, Model })
 sequelize.sync()
 
 module.exports = sequelize
