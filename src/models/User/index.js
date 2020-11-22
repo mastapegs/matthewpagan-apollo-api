@@ -11,6 +11,7 @@ const User = ({ sequelize, DataTypes, Model }) => {
   User.init({
     id: { type: DataTypes.STRING, field: 'email', },
     email: { type: DataTypes.STRING, primaryKey: true, allowNull: false, unique: true, },
+    password: { type: DataTypes.STRING, allowNull: false },
     firstName: { type: DataTypes.STRING, allowNull: false, },
     lastName: { type: DataTypes.STRING, },
   }, {
