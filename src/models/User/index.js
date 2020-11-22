@@ -1,4 +1,5 @@
 const getAll = require('./getAll')
+const login = require('./login')
 const register = require('./register')
 
 const User = ({ sequelize, DataTypes, Model }) => {
@@ -6,6 +7,7 @@ const User = ({ sequelize, DataTypes, Model }) => {
   class User extends Model {
     static register = register
     static getAll = getAll
+    static login = login
   }
 
   User.init({

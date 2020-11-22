@@ -3,6 +3,7 @@ extend type Query {
 }
 
 extend type Mutation {
+  login(email: String, password: String): User
   register(user: UserInput): User
 }
 
