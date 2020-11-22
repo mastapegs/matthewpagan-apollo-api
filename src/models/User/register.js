@@ -1,4 +1,4 @@
-async function createUser(user) {
+async function register(user) {
   const newUser = await this.create(user).catch(err => {
     if (err.name === 'SequelizeUniqueConstraintError') {
       return ({
@@ -14,4 +14,4 @@ async function createUser(user) {
   })
 }
 
-module.exports = createUser
+module.exports = register

@@ -2,8 +2,8 @@ const users = async (_, paginateVariables, { sequelize }) => {
   return await sequelize.models.User.getAll(paginateVariables)
 }
 
-const createUser = (_, { user }, { sequelize }) => {
-  return sequelize.models.User.createUser(user)
+const register = (_, { user }, { sequelize }) => {
+  return sequelize.models.User.register(user)
 }
 
 const resolvers = {
@@ -11,7 +11,7 @@ const resolvers = {
     users,
   },
   Mutation: {
-    createUser,
+    register,
   }
 }
 

@@ -1,10 +1,10 @@
 const getAll = require('./getAll')
-const createUser = require('./createUser')
+const register = require('./register')
 
 const User = ({ sequelize, DataTypes, Model }) => {
 
   class User extends Model {
-    static createUser = createUser
+    static register = register
     static getAll = getAll
   }
 
