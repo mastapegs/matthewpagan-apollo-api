@@ -4,7 +4,13 @@ async function login({ email, password }) {
 
   console.log(email)
   console.log(password)
-  // console.log((await bcrypt.hash(password, 14)))
+  if (password) console.log((await bcrypt.hash(password, 10)))
+
+  const checkUser = await this.findOne({ where: { email, } })
+  console.log(checkUser.password)
+
+  const passwordMatch = await bcrypt.compare(password, checkUser.password)
+  console.log(passwordMatch)
 
   return ({
     id: '123',
