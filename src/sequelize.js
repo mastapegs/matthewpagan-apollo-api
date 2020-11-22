@@ -11,6 +11,6 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_
 UserModel({ sequelize, DataTypes, Model })
 ShapeModel({ sequelize, DataTypes, Model })
 
-sequelize.sync()
+sequelize.sync({ alter: true })
 
 module.exports = sequelize
